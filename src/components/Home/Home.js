@@ -54,19 +54,25 @@ export default function Home() {
         });
         resetTurn();
       } else {
-        console.log("not-same");
-        resetTurn();
+        setTimeout(() => {
+          resetTurn();
+        }, 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
-  console.log(cards);
+
   return (
     <div className="home">
       <h1>Memory-Game</h1>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard card={card} key={card.id} handleChoice={handleChoice} />
+          <SingleCard
+            card={card}
+            key={card.id}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+          />
         ))}
       </div>
     </div>

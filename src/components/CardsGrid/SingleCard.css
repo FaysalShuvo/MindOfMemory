@@ -8,3 +8,24 @@
   border: 2px solid #fff;
   border-radius: 10px;
 }
+
+.card .front-side {
+  position: absolute;
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+}
+
+.flipped .front-side {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+/* back of the card */
+.card .back-side {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+.flipped .back-side {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}

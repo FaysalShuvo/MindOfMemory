@@ -2,7 +2,7 @@ import React from "react";
 // styles
 import "./SingleCard.css";
 
-export default function SingleCard({ card, handleChoice }) {
+export default function SingleCard({ card, handleChoice, flipped }) {
   const handleClick = () => {
     handleChoice(card);
   };
@@ -10,7 +10,7 @@ export default function SingleCard({ card, handleChoice }) {
   return (
     <>
       <div className="card" key={card.id}>
-        <div>
+        <div className={flipped ? "flipped" : ""}>
           <img src={card.src} alt="card front side" className="front-side" />
           <img
             src="/img/cover.png"
@@ -23,3 +23,5 @@ export default function SingleCard({ card, handleChoice }) {
     </>
   );
 }
+
+// }
