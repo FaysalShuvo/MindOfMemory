@@ -17,12 +17,14 @@ export default function Home() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   // reset choice
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prv) => prv + 1);
+    setDisabled(false);
   };
 
   // shuffle cards
@@ -30,6 +32,9 @@ export default function Home() {
     const shuffledCards = [...cardImgs, ...cardImgs]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
+
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -42,6 +47,7 @@ export default function Home() {
   // compare 2 selected card
   useEffect(() => {
     if (choiceOne && choiceTwo) {
+      setDisabled(true);
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCard) => {
           return prevCard.map((card) => {
@@ -61,6 +67,11 @@ export default function Home() {
     }
   }, [choiceOne, choiceTwo]);
 
+  // start the game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   return (
     <div className="home">
       <h1>Memory-Game</h1>
@@ -72,9 +83,13 @@ export default function Home() {
             key={card.id}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
           />
         ))}
       </div>
+      <p>
+        You Turned <span>{turns}</span> times{" "}
+      </p>
     </div>
   );
 }
