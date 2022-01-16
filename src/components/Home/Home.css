@@ -1,0 +1,17 @@
+.home button {
+  background: none;
+  border: 0.5px solid #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  text-transform: lowercase;
+  transition: all 0.3s;
+  box-shadow: 0 1px 0 0 #fff;
+}
+.home button:hover {
+  background: #dc143c;
+  color: #fff;
+}
